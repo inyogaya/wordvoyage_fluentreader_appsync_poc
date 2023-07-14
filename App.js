@@ -291,6 +291,7 @@ function App() {
   return (
     <Authenticator.Provider>
       <Authenticator 
+      them
   
         // will wrap every subcomponent
         components={{
