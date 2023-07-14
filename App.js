@@ -1,9 +1,11 @@
 // import * as React from 'react';
-import React, {useState} from 'react';
-import { View, StyleSheet, Button, Text, TouchableOpacity, Image, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Button, Text, TouchableOpacity, Image, Alert, ImageBackground, } from 'react-native';
 import { Video, Audio } from 'expo-av';
+import { CheckBox } from 'react-native-rapi-ui';
+// import { CheckBoxBase, CheckBox } from '@react-native-community/checkbox';
 import t from 'tcomb-form-native';
-import { Amplify, Storage, Auth, graphqlOperation, API } from 'aws-amplify';
+import { Amplify, Storage, Auth, graphqlOperation, API, } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
 // import { createRecording } from '../src/graphql/mutations';
 import { createRecording } from './src/graphql/mutations';
@@ -13,10 +15,19 @@ import {
   withAuthenticator,
 
   SignUp,
-  Authenticator
+  Authenticator,
+  useTheme,
+  
+  
 
 
 } from '@aws-amplify/ui-react-native';
+import { AmplifyTheme } from './AmplifyTheme';
+// import AmplifyTheme from 'aws-amplify-react-native/dist/AmplifyTheme';
+
+// AmplifyTheme
+
+
 // import {
 //   useAuthenticator,
 
@@ -26,15 +37,90 @@ Amplify.configure(awsconfig);
 const Form = t.form.Form;
 const User = t.struct({
   name: t.String,
-// price: t.Number,
+  // price: t.Number,
   date: t.String,
   description: t.String,
 });
+const MyAppHeader = () => {
+  const {
+    tokens: { space, fontSizes },
+  } = useTheme();
+  return (
+    <View>
+      {/* <Text style={{ fontSize: fontSizes.xxxl, padding: space.xl }}>
+        My Header
+      </Text> */}
+      <View style={{
+        //backgroundColor:'blue',
+        width: '100%',
+        flexDirection: 'column',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+      }} >
+        <Image style={{
+          marginTop: 0, marginBottom: 80, width: 250, height: 48, resizeMode: 'contain'
+        }} source={require("./images/Logo.png")}></Image>
+      </View>
+
+
+      <View
+        style={{ backgroundColor: 'transparent', width: '100%', height: 300, position: 'absolute', top: 250, zIndex: -1 }}>
+        <ImageBackground
+          resizeMode="contain"
+          //resizeMode="contain"
+          style={{
+            height: 500,
+            width: 400,
+            opacity: 0.3
+
+          }}
+
+          source={require("./images/Vector@2x.ios.png")}
+        >
+        </ImageBackground>
+
+      </View>
+    </View>
+  );
+};
 
 function SignOutButton() {
   const { signOut } = useAuthenticator();
   return <Button title="Sign Out" onPress={signOut} />;
 }
+
+const MySignInFooter = () => {
+  return (
+    <View>
+
+
+
+
+
+
+
+      <View style={{ width: '90%', marginLeft: 8, marginTop: 75, marginBottom: 20, flexDirection: 'row', }}>
+        <CheckBox
+          //  value={isSelected}
+          //  onValueChange={setSelection}
+          style={{
+            alignSelf: 'center',
+            marginLeft:30
+
+
+
+          }}
+        />
+        <Text style={{ color: 'white', margin: 5, fontWeight: 'bold' }} >Remember me</Text>
+      </View>
+     </View>
+
+
+
+  )
+};
 // export default function App() {
 function App() {
   const video = React.useRef(null);
@@ -47,7 +133,7 @@ function App() {
 
   ///
 
-  const [form, setForm] = useState(null); 
+  const [form, setForm] = useState(null);
   const [initialValues, setInitialValues] = useState({});
   const options = {
     auto: 'placeholders',
@@ -165,7 +251,7 @@ function App() {
   }, [sound]);
 
 
- 
+
   const handleSubmit = async () => {
     try {
       const value = await form.getValue();
@@ -187,10 +273,10 @@ function App() {
             // price: value.price.toFixed(2),
             date: value.date,
             description: value.description,
-            // userId: user.attributes.sub,
-            // userName: user.username,
+            userId: user.attributes.sub,
+            userName: user.username,
             // image: photo.fileName,
-            // image:'tof'
+            image: 'tof'
           },
         }),
       );
@@ -203,82 +289,112 @@ function App() {
   };
 
   return (
-    // <Authenticator.Provider>
-    // <Authenticator>
-    <View style={styles.containers}>
-      <View style={styles.container}>
+    <Authenticator.Provider>
+      <Authenticator 
+  
+        // will wrap every subcomponent
+        components={{
+          SignIn: ({fields, ...props}) => (
+            // will render only on the SignIn subcomponent
+            <Authenticator.SignIn 
+      
+            {...props} 
+            // Footer={MySignInFooter}
+            fields={[
+              // ...fields,
+              
+              {
+                name: 'username',
+                label: 'Email',
+                type: 'default',
+                placeholder: 'whit@gmail.com',
+              },
 
-        {/* <SignedOutMessage/> */}
-        <Text>   <SignOutButton />;</Text>
-
-
-        {/* <SignUp/> */}
-
-        {/* <Video
-        ref={video}
-        style={styles.video}
-        source={{
-          uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+              {
+                name: 'password',
+                label: 'Password',
+                type: 'password',
+                placeholder: '12345678',
+              },
+            ]}
+             />
+          ),
         }}
-        useNativeControls
-        resizeMode="contain"
-        isLooping
-        onPlaybackStatusUpdate={status => setStatus(() => status)}
-      />
-      <View style={styles.buttons}>
-        <Button
-          title={status.isPlaying ? 'Pause' : 'Play'}
-          onPress={() =>
-            status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-          }
-        />
-      </View> */}
 
-        {/*  */}
 
-        <Button title="Play Sound" onPress={playSound} />
-        <View style={{ marginTop: 10 }}>
-          <Button title="Stop Sound" onPress={stopSound} />
-        </View>
-        <Text>
-          {'\n'}
-
-        </Text>
-        {/*  */}
-        <View style={styles1.container}>
-          <Button
-            title={recording ? 'Stop Recording' : 'Start Recording'}
-            onPress={recording ? stopRecording : startRecording}
+        
+        Container={(props) => (
+          // reuse default `Container` and apply custom background
+          <Authenticator.Container
+            {...props}
+            style={{ backgroundColor: '#34566A' }}
           />
+
+          
+
+
+        )}
+        // will render on every subcomponent
+        Header={MyAppHeader}
+        Footer={MySignInFooter}
+      >
+
+
+
+        <View style={styles.containers}>
+
+          <View style={styles.container}>
+
+
+
+            <Text>   <SignOutButton />;</Text>
+
+
+            {/*  */}
+
+            <Button title="Play Sound" onPress={playSound} />
+            <View style={{ marginTop: 10 }}>
+              <Button title="Stop Sound" onPress={stopSound} />
+            </View>
+            <Text>
+              {'\n'}
+
+            </Text>
+            {/*  */}
+            <View style={styles1.container}>
+              <Button
+                title={recording ? 'Stop Recording' : 'Start Recording'}
+                onPress={recording ? stopRecording : startRecording}
+              />
+            </View>
+
+            <View style={styles.addProductView}>
+              <Form
+                ref={(c) => setForm(c)}
+                value={initialValues}
+                type={User}
+                options={options}
+              />
+              <Button title="Save" onPress={handleSubmit} />
+
+            </View>
+          </View>
+
         </View>
 
-        <View style={styles.addProductView}>
-          <Form
-            ref={(c) => setForm(c)}
-            value={initialValues}
-            type={User}
-            options={options}
-          />
-          <Button title="Save" onPress={handleSubmit} />
-
-        </View>
-      </View>
-
-    </View>
-
-    // </Authenticator>
-    // </Authenticator.Provider>
+      </Authenticator>
+    </Authenticator.Provider>
   );
 }
 
-export default withAuthenticator(App, {
-  signUpConfig: {
-    hiddenDefaults: ['phone_number'],
-    // hiddenDefaults: ['email'],
-    signUpFields: [{ key: 'phone_number', required: false }]
-  }
-})
-// export default App
+// export default withAuthenticator(App, {
+//   signUpConfig: {
+//     hiddenDefaults: ['phone_number'],
+//     // hiddenDefaults: ['email'],
+//     signUpFields: [{ key: 'phone_number', required: false }]
+//   }
+// })
+export default App
 
 const styles = StyleSheet.create({
   addProductView: {
