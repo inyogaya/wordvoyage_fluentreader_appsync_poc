@@ -88,8 +88,14 @@ const MyAppHeader = () => {
 
 function SignOutButton() {
   const { signOut } = useAuthenticator();
+
   return <Button title="Sign Out" onPress={signOut} />;
+ 
+
+  
 }
+
+
 
 const MySignInFooter = () => {
   return (
@@ -122,7 +128,7 @@ const MySignInFooter = () => {
   )
 };
 // export default function App() {
-function App() {
+function App({navigation}) {
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
   const [uris, setUris] = React.useState({});
@@ -250,7 +256,14 @@ function App() {
       : undefined;
   }, [sound]);
 
-
+  const handleSignOut = async () => {
+    Auth.signOut()
+      .then(() => {
+        console.log('User signed out');
+        navigation.navigate('login');
+      })
+      .catch((error) => console.log('Error signing out: ', error));
+  };
 
   const handleSubmit = async () => {
     try {
@@ -289,56 +302,7 @@ function App() {
   };
 
   return (
-    <Authenticator.Provider>
-      <Authenticator 
-      them
-  
-        // will wrap every subcomponent
-        components={{
-          SignIn: ({fields, ...props}) => (
-            // will render only on the SignIn subcomponent
-            <Authenticator.SignIn 
-      
-            {...props} 
-            // Footer={MySignInFooter}
-            fields={[
-              // ...fields,
-              
-              {
-                name: 'username',
-                label: 'Email',
-                type: 'default',
-                placeholder: 'whit@gmail.com',
-              },
-
-              {
-                name: 'password',
-                label: 'Password',
-                type: 'password',
-                placeholder: '12345678',
-              },
-            ]}
-             />
-          ),
-        }}
-
-
-        
-        Container={(props) => (
-          // reuse default `Container` and apply custom background
-          <Authenticator.Container
-            {...props}
-            style={{ backgroundColor: '#34566A' }}
-          />
-
-          
-
-
-        )}
-        // will render on every subcomponent
-        Header={MyAppHeader}
-        Footer={MySignInFooter}
-      >
+    
 
 
 
@@ -348,8 +312,12 @@ function App() {
 
 
 
-            <Text>   <SignOutButton />;</Text>
+            {/* <Text>   <SignOutButton />;</Text> */}
 
+<TouchableOpacity onPress={handleSignOut}>
+<Text style={{color:'green'}}> please sign out</Text>
+
+</TouchableOpacity>
 
             {/*  */}
 
@@ -383,11 +351,11 @@ function App() {
 
         </View>
 
-      </Authenticator>
-    </Authenticator.Provider>
+    
   );
 }
 
+export default App;
 // export default withAuthenticator(App, {
 //   signUpConfig: {
 //     hiddenDefaults: ['phone_number'],
@@ -395,7 +363,6 @@ function App() {
 //     signUpFields: [{ key: 'phone_number', required: false }]
 //   }
 // })
-export default App
 
 const styles = StyleSheet.create({
   addProductView: {

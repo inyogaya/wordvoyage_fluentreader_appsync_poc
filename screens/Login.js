@@ -28,7 +28,7 @@ import { CheckBox } from 'react-native-rapi-ui';
 async function signIn() {
   try {
     console.log(username);
-    Alert.alert(username)
+    // Alert.alert(username)
     const user = await Auth.signIn(username, password);
     console.log('signed in')
   } catch (error) {
@@ -47,7 +47,7 @@ async function signIn() {
 
 
 
-const Login = () => {
+const Login = ({navigation}) => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const schoolIDRef = useRef(null);
@@ -66,6 +66,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const [loading, setLoading]=useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
   // const [username, setUsername] = useState("");
@@ -95,6 +96,7 @@ const isValidUsername = (username) => {
   
   const onPressForgotPassword = () => {
     // Do something about forgot password operation
+//   navigation.navigate('f')
   };
   const onPressSignUp = () => {
     // Do something about signup operation
@@ -109,27 +111,33 @@ const isValidUsername = (username) => {
 
     try {
         console.log(username);
-        Alert.alert(username)
+        // Alert.alert(username)
         
       const user = await Auth.signIn(username, password);
       console.log(' you are signed in');
-      console.log(user)
+      Alert.alert('You are signed in')
+      navigation.navigate('app')
+    //   console.log(user)
     } catch (error) {
         console.log(username);
         Alert.alert('Oops', error.message)
+        setErrorMessage(error.message);
       console.log('error signing in', error);
     }
 
     setLoading(false);
 
     ///////
-    try {
-      await Auth.signOut();
-      console.log('you are signed out');
-    } catch (error) {
-      console.log('error signing out: ', error);
-    }
+    // try {
+    //   await Auth.signOut();
+    //   console.log('you are signed out');
+    // } catch (error) {
+    //   console.log('error signing out: ', error);
+    // }
   };
+
+  
+
   const handleBlur = () => {
     TextInput.blur();
   };
@@ -152,42 +160,8 @@ const isValidUsername = (username) => {
       </View>
 
       <View style={{ alignContent: 'flex-start', width: '90%', }}>
-{/* 
-        <Text style={{ fontWeight: 'bold', color: "white", marginTop: 7, marginBottom: 4 }}>School ID</Text>
 
 
-        <TextInput
-          style={styles.inputText}
-        
-          autoCapitalize="none"
-
-          onChangeText={text => setState({ schoolID: text })} />
-
-
-        <Text style={{ fontWeight: 'bold', color: "white", marginTop: 7, marginBottom: 4 }}>Username</Text> */}
-
-
-        {/* <TextInput
-          style={styles.inputText}
-          autoCapitalize="none"
-          // secureTextEntry
-          placeholder=""
-          placeholderTextColor=""
-          value={username}
-          onChangeText={text => setState({ username: text })} />
-
-        <Text style={{ fontWeight: 'bold', color: "white", marginTop: 7, marginBottom: 4 }}>Password</Text>
-
-
-        <TextInput
-          style={styles.inputText}
-          autoCapitalize="none"
-          secureTextEntry
-          placeholder=""
-          placeholderTextColor="white"
-          value={password}
-
-          onChangeText={text => setState({ password: text })} /> */}
   <Text style={{ fontWeight: 'bold', color: "white", marginTop: 7, marginBottom: 4 }}>username</Text>
 <TextInput
 style={styles.inputText}
@@ -206,6 +180,8 @@ autoCapitalize="none"
         value={password}
         onChangeText={setPassword}
       />
+
+{errorMessage ? <Text style={{ color: 'red' }}>{errorMessage}</Text> : null}
       {/* <Button
         title="Sign In"
         onPress={handleSignIn}
@@ -219,7 +195,7 @@ autoCapitalize="none"
         marginTop: 5
       }}>
         <TouchableOpacity
-          onPress={onPressForgotPassword}>
+          onPress={() => navigation.navigate("f2")}>
 
           <Text style={styles.forgotAndSignUpText}>Forgot Password?</Text>
 
