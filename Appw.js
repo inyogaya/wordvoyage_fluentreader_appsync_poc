@@ -6,11 +6,21 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import App from "./App";
+import LastReadBlock from "./components/LastReadBlock";
 import ForgotPassword from "./screens/forgotPassword";
 import ForgotPassword2 from "./screens/forgotPassword2";
 import ForgotPassword3 from "./screens/forgotPassword3";
 // import forgotPassword3 from "./screens/forgotPassword3";
 import Login from "./screens/Login";
+import Bookshelves from "./screens/BookShelves";
+import UtteranceBox from "./components/UtteranceBox";
+import BookProgress from "./components/BookProgress";
+import BlockCompare from "./components/BlockCompare";
+import CleanAppStorage from "./components/CleanAppStorage";
+import BookSentencesRead from "./components/BookSentencesRead";
+import Profile from "./screens/Profile";
+import Rec from "./screens/rec";
+
 
 
 // import VoiceRecorder from "./screens/VoiceRecorder";
@@ -38,6 +48,12 @@ export default function Appw() {
           options={{headerShown: false}}
         />
 
+<Stack.Screen 
+          name="rec"
+          component={Rec}
+          options={{headerShown: false}}
+        />
+
         
    <Stack.Screen 
           name="f"
@@ -60,7 +76,75 @@ export default function Appw() {
           options={{headerShown: false}}
         />
 
+       {/*  */}
+
+       <Stack.Screen 
+          name="profile"
+          component={Profile}
+          options={{headerShown: false}} 
+        />
+        <Stack.Screen 
+          name="lastreadblock"
+          component={LastReadBlock}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen 
+          name="bookshelves"
+          component={Bookshelves}
+          options={{headerShown: false}}
+        /> 
+        {/* <Stack.Screen 
+          name="iam"
+          component={IAm}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen 
+          name="Third"
+          component={ThirdScreen}
+          options={{headerShown: false}}
+        /> */}
+         <Stack.Screen 
+          name="Utterances"
+          component={UtteranceBox}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen 
+          name="delimitSentences"
+          component={BookSentencesRead}
+          options={{headerShown: false}}
+        />
+             {/* <Stack.Screen 
+          name="readSentences"
+          component={UtterancesDisplay}
+          options={{headerShown: false}}
+        />
+           <Stack.Screen 
+          name="saveChapter"
+          component={Save}
+          options={{headerShown: false}}
+        />
+             <Stack.Screen 
+          name="compare"
+          component={BookContent}
+          options={{headerShown: false}}
+        />
+           <Stack.Screen 
+          name="cleanStorage"
+          component={CleanAppStorage}
+          options={{headerShown: false}}
+        /> */}
+        <Stack.Screen 
+          name="blockCompare"
+          component={BlockCompare}
+          options={{headerShown: false}}
+        />
        
+         <Stack.Screen 
+          name="progress"
+          component={BookProgress}
+          options={{headerShown: false}}
+        />
 
         
       </Stack.Navigator>
