@@ -21,7 +21,7 @@ import BookSentencesRead from "./components/BookSentencesRead";
 import Profile from "./screens/Profile";
 import Rec from "./screens/rec";
 
-
+import UtterancesDisplay from "./components/UtterancesDisplay"
 
 // import VoiceRecorder from "./screens/VoiceRecorder";
 
@@ -112,6 +112,11 @@ export default function Appw() {
         <Stack.Screen 
           name="delimitSentences"
           component={BookSentencesRead}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen 
+          name="readSentences"
+          component={UtterancesDisplay}
           options={{headerShown: false}}
         />
              {/* <Stack.Screen 

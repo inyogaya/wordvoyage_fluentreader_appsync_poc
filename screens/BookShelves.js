@@ -71,7 +71,7 @@ const BookShelves = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={{ width: '33%', alignItems: 'center' }}>
-            <TouchableOpacity onPress={() => navigation.navigate('record')}>
+            <TouchableOpacity onPress={() => navigation.navigate('rec')}>
               <Image source={require('../images/record/book-open.png')} />
             </TouchableOpacity>
           </View>

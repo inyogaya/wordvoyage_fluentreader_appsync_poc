@@ -48,14 +48,14 @@ const UtteranceBox = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View style={{ width: '33%', alignItems: 'center' }}>
-          <TouchableOpacity onPress={() => navigation.navigate("record")}>
+          <TouchableOpacity onPress={() => navigation.navigate("rec")}>
             <Image
               style={{}}
               source={require("../images/record/book-openy.png")}></Image>
           </TouchableOpacity>
         </View>
         <View style={{ width: '33%', alignItems: 'flex-end' }}>
-          <TouchableOpacity onPress={() => navigation.navigate("readSentences")}>
+          <TouchableOpacity onPress={() => navigation.navigate("profile")}>
             <Image
               style={{}}
               source={require("../images/record/Profile.png")}></Image>
