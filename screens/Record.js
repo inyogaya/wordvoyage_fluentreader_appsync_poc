@@ -49,96 +49,9 @@ const User = t.struct({
     date: t.String,
     description: t.String,
 });
-const MyAppHeader = () => {
-    const {
-        tokens: { space, fontSizes },
-    } = useTheme();
 
-
-    return (
-        <View>
-            {/* <Text style={{ fontSize: fontSizes.xxxl, padding: space.xl }}>
-        My Header
-      </Text> */}
-            <View style={{
-                //backgroundColor:'blue',
-                width: '100%',
-                flexDirection: 'column',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-
-            }} >
-                <Image style={{
-                    marginTop: 0, marginBottom: 80, width: 250, height: 48, resizeMode: 'contain'
-                }} source={require("../images/Logo.png")}></Image>
-            </View>
-
-
-            <View
-                style={{ backgroundColor: 'transparent', width: '100%', height: 300, position: 'absolute', top: 250, zIndex: -1 }}>
-                <ImageBackground
-                    resizeMode="contain"
-                    //resizeMode="contain"
-                    style={{
-                        height: 500,
-                        width: 400,
-                        opacity: 0.3
-
-                    }}
-
-                    source={require("../images/Vector@2x.ios.png")}
-                >
-                </ImageBackground>
-
-            </View>
-        </View>
-    );
-};
-
-function SignOutButton() {
-    const { signOut } = useAuthenticator();
-
-    return <Button title="Sign Out" onPress={signOut} />;
-
-
-
-}
-
-
-
-const MySignInFooter = () => {
-    return (
-        <View>
-
-
-
-
-
-
-
-            <View style={{ width: '90%', marginLeft: 8, marginTop: 75, marginBottom: 20, flexDirection: 'row', }}>
-                <CheckBox
-                    //  value={isSelected}
-                    //  onValueChange={setSelection}
-                    style={{
-                        alignSelf: 'center',
-                        marginLeft: 30
-
-
-
-                    }}
-                />
-                <Text style={{ color: 'white', margin: 5, fontWeight: 'bold' }} >Remember me</Text>
-            </View>
-        </View>
-
-
-
-    )
-};
 // export default function App() {
-function Rec({ navigation }) {
+export default function Record({ navigation }) {
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
     const [uris, setUris] = React.useState({});
@@ -614,7 +527,7 @@ function Rec({ navigation }) {
     );
 }
 
-export default Rec;
+// export default Rec;
 // export default withAuthenticator(App, {
 //   signUpConfig: {
 //     hiddenDefaults: ['phone_number'],

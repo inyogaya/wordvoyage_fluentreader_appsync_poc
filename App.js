@@ -17,10 +17,6 @@ import {
   SignUp,
   Authenticator,
   useTheme,
-  
-  
-
-
 } from '@aws-amplify/ui-react-native';
 import { AmplifyTheme } from './AmplifyTheme';
 // import AmplifyTheme from 'aws-amplify-react-native/dist/AmplifyTheme';

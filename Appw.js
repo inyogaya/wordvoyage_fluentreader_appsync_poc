@@ -6,22 +6,24 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import App from "./App";
-import LastReadBlock from "./components/LastReadBlock";
-import ForgotPassword from "./screens/forgotPassword";
-import ForgotPassword2 from "./screens/forgotPassword2";
-import ForgotPassword3 from "./screens/forgotPassword3";
+// import LastReadBlock from "./components/LastReadBlock";
+import ForgotPassword from "./screens/ForgotPassword";
+import ForgotPassword2 from "./screens/ForgotPassword2";
+import ForgotPassword3 from "./screens/ForgotPassword3";
 // import forgotPassword3 from "./screens/forgotPassword3";
 import Login from "./screens/Login";
-import Bookshelves from "./screens/BookShelves";
-import UtteranceBox from "./components/UtteranceBox";
-import BookProgress from "./components/BookProgress";
-import BlockCompare from "./components/BlockCompare";
-import CleanAppStorage from "./components/CleanAppStorage";
-import BookSentencesRead from "./components/BookSentencesRead";
+// import Bookshelves from "./screens/BookShelves";
+// import UtteranceBox from "./components/UtteranceBox";
+// import BookProgress from "./components/BookProgress";
+// import BlockCompare from "./components/BlockCompare";
+// import CleanAppStorage from "./components/CleanAppStorage";
+// import BookSentencesRead from "./components/BookSentencesRead";
 import Profile from "./screens/Profile";
-import Rec from "./screens/rec";
+// import Rec from "./screens/Rec";
+// import Record from "./screens/Record";
+// Record
 
-import UtterancesDisplay from "./components/UtterancesDisplay"
+// import UtterancesDisplay from "./components/UtterancesDisplay"
 
 // import VoiceRecorder from "./screens/VoiceRecorder";
 
@@ -29,61 +31,65 @@ import UtterancesDisplay from "./components/UtterancesDisplay"
 
 const Stack = createNativeStackNavigator();
 
-export default function Appw() { 
-  
+export default function Appw() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      
-      
-      <Stack.Screen 
+
+
+        <Stack.Screen
           name="login"
           component={Login}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
-
-<Stack.Screen 
+{/* <Stack.Screen
+          name="rec"
+          component={Record}
+          options={{ headerShown: false }}
+        /> */}
+        <Stack.Screen
           name="app"
           component={App}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
-
-<Stack.Screen 
+{/* 
+        <Stack.Screen
           name="rec"
           component={Rec}
-          options={{headerShown: false}}
-        />
+          options={{ headerShown: false }}
+        /> */}
 
-        
-   <Stack.Screen 
+
+        <Stack.Screen
           name="f"
           component={ForgotPassword}
 
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
 
-<Stack.Screen 
+        <Stack.Screen
           name="f2"
           component={ForgotPassword2}
-          
-          options={{headerShown: false}}
+
+          options={{ headerShown: false }}
         />
 
-<Stack.Screen 
+        <Stack.Screen
           name="f3"
           component={ForgotPassword3}
-          
-          options={{headerShown: false}}
+
+          options={{ headerShown: false }}
         />
 
-       {/*  */}
+        {/*  */}
 
-       <Stack.Screen 
+        <Stack.Screen
           name="profile"
           component={Profile}
-          options={{headerShown: false}} 
+          options={{ headerShown: false }}
         />
-        <Stack.Screen 
+        {/* <Stack.Screen 
           name="lastreadblock"
           component={LastReadBlock}
           options={{headerShown: false}}
@@ -93,7 +99,7 @@ export default function Appw() {
           name="bookshelves"
           component={Bookshelves}
           options={{headerShown: false}}
-        /> 
+        />  */}
         {/* <Stack.Screen 
           name="iam"
           component={IAm}
@@ -104,7 +110,7 @@ export default function Appw() {
           component={ThirdScreen}
           options={{headerShown: false}}
         /> */}
-         <Stack.Screen 
+        {/* <Stack.Screen 
           name="Utterances"
           component={UtteranceBox}
           options={{headerShown: false}}
@@ -118,8 +124,8 @@ export default function Appw() {
           name="readSentences"
           component={UtterancesDisplay}
           options={{headerShown: false}}
-        />
-             {/* <Stack.Screen 
+        /> */}
+        {/* <Stack.Screen 
           name="readSentences"
           component={UtterancesDisplay}
           options={{headerShown: false}}
@@ -139,19 +145,19 @@ export default function Appw() {
           component={CleanAppStorage}
           options={{headerShown: false}}
         /> */}
-        <Stack.Screen 
+        {/* <Stack.Screen 
           name="blockCompare"
           component={BlockCompare}
           options={{headerShown: false}}
-        />
-       
+        /> */}
+        {/*        
          <Stack.Screen 
           name="progress"
           component={BookProgress}
           options={{headerShown: false}}
-        />
+        /> */}
 
-        
+
       </Stack.Navigator>
     </NavigationContainer>
   );
