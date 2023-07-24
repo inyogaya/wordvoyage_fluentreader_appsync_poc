@@ -19,6 +19,7 @@ import Login from "./screens/Login";
 // import CleanAppStorage from "./components/CleanAppStorage";
 // import BookSentencesRead from "./components/BookSentencesRead";
 import Profile from "./screens/Profile";
+import Record from "./screens/Record";
 // import Rec from "./screens/Rec";
 // import Record from "./screens/Record";
 // Record
@@ -53,12 +54,12 @@ export default function Appw() {
           component={App}
           options={{ headerShown: false }}
         />
-{/* 
+
         <Stack.Screen
           name="rec"
-          component={Rec}
+          component={Record}
           options={{ headerShown: false }}
-        /> */}
+        />
 
 
         <Stack.Screen

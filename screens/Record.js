@@ -24,7 +24,7 @@ import {
 } from '@aws-amplify/ui-react-native';
 // import { AmplifyTheme } from '../AmplifyTheme';
 
-import { ProgressBar } from 'react-native-paper';
+// import { ProgressBar } from 'react-native-paper';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import {
     responsiveHeight,
@@ -278,7 +278,7 @@ export default function Record({ navigation }) {
                 <Text style={{ marginLeft: '6.94%', marginBottom: '0.33%', fontWeight: 'bold', fontSize: 15, color: 'white' }}>Reading Assignment for {dateString}</Text>
                 <View style={{ marginTop: '0.2%', marginBottom: '19.33%', marginLeft: '5.56%', flexDirection: 'row', alignItems: 'center', width: '90%' }}>
                     <View style={{ width: '90%' }}>
-                        <ProgressBar progress={progressPercent / 100} color='#FFCD00' style={{ height: '35.39%', justifyContent: 'center', }} />
+                        {/* <ProgressBar progress={progressPercent / 100} color='#FFCD00' style={{ height: '35.39%', justifyContent: 'center', }} /> */}
                     </View>
                     <View style={{ width: '13%', alignItems: 'flex-end', paddingBottom: '4%' }}>
                         <Text style={{ color: 'white' }}>{progressPercent}% </Text>
