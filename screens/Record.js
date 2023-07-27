@@ -133,7 +133,7 @@ export default function Record({ navigation }) {
             },
 
 
-            level: 'public',
+            level: 'private',
             contentType: file.type,
             progressCallback(uploadProgress) {
                 console.log('PROGRESS--', uploadProgress.loaded + '/' + uploadProgress.total);
