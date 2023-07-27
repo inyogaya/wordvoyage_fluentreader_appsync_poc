@@ -49,12 +49,12 @@ export default function Appw() {
           component={Record}
           options={{ headerShown: false }}
         /> */}
-        <Stack.Screen
+       
+       <Stack.Screen
           name="app"
           component={App}
           options={{ headerShown: false }}
         />
-
         <Stack.Screen
           name="rec"
           component={Record}

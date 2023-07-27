@@ -115,7 +115,7 @@ const isValidUsername = (username) => {
         
       const user = await Auth.signIn(username, password);
       console.log(' you are signed in');
-      Alert.alert('You are signed in')
+      // Alert.alert('You are signed in')
       navigation.navigate('rec')
     //   console.log(user)
     } catch (error) {
