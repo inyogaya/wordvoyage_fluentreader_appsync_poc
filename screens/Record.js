@@ -125,7 +125,7 @@ export default function Record({ navigation }) {
     const uploadFile = async (file) => {
         // const img = await fetchImageUri(file.uri);
         const img = await fetchImageUri(file);
-        return Storage.put(`my-image-filename${Math.random()}.caf`, img, {
+        return Storage.put(`record${Math.random()}.mp3`, img, {
             metadata: {
                 category: 'an audio',
                 author: 'usernamemefire',
@@ -133,7 +133,7 @@ export default function Record({ navigation }) {
             },
 
 
-            level: 'private',
+            level: 'public',
             contentType: file.type,
             progressCallback(uploadProgress) {
                 console.log('PROGRESS--', uploadProgress.loaded + '/' + uploadProgress.total);
