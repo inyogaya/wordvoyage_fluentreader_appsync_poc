@@ -125,7 +125,7 @@ export default function Record({ navigation }) {
     const uploadFile = async (file) => {
         // const img = await fetchImageUri(file.uri);
         const img = await fetchImageUri(file);
-        return Storage.put(`record${Math.random()}.mp3`, img, {
+        return Storage.put(`record${Math.random()}.m4a`, img, {
             metadata: {
                 category: 'an audio',
                 author: 'usernamemefire',
@@ -133,7 +133,7 @@ export default function Record({ navigation }) {
             },
 
 
-            level: 'public',
+            level: 'private',
             contentType: file.type,
             progressCallback(uploadProgress) {
                 console.log('PROGRESS--', uploadProgress.loaded + '/' + uploadProgress.total);
@@ -168,7 +168,8 @@ export default function Record({ navigation }) {
             });
             console.log('Starting recording..');
             const recording = new Audio.Recording();
-            await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+            // await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+            await recording.prepareToRecordAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
             await recording.startAsync();
             setRecording(recording);
             console.log('Recording started');
