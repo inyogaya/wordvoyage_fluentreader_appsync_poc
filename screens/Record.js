@@ -130,7 +130,7 @@ export default function Record({ navigation }) {
                 category: 'an audio',
                 author: 'usernamemefire',
                 description: 'A sample audio'
-            },
+            }, s
 
 
             level: 'public',
